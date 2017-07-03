@@ -6,8 +6,6 @@ namespace Framework.Controllers.Plugin
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
-
-    using Framework.Data;
     using Framework.Models;
     using Framework.Plugins;
     using Framework.Plugins.Analyzers;
@@ -18,58 +16,44 @@ namespace Framework.Controllers.Plugin
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Logging;
     using Microsoft.Extensions.Primitives;
 
     public class ParserController : Controller
     {
-        public List<PluginDescription> PluginList { get; set; }
+        public List<PluginDescription> PluginList = new List<PluginDescription>
+                             {
+                                 new PluginDescription(
+                                     0,
+                                     "SpottaParse",
+                                     PluginDescription.PluginType.Parser, 
+                                     "Parser for Spotta logs",
+                                     "v1.0.0",
+                                     "R.M. Rooimans"),
+                                 new PluginDescription(
+                                     1,
+                                     "PGGMParse",
+                                     PluginDescription.PluginType.Parser,
+                                     "Parser for PGGM logs",
+                                     "v1.0.0",
+                                     "R.M. Rooimans")
+                             };
 
-        private readonly ILogger<PluginController> logger;
-
-        private readonly DbContextOptions<PluginContext> options;
+        private readonly ILogger<ParserController> logger;
 
         private readonly IHostingEnvironment hostingEnvironment;
 
-        /// <summary>
-        /// The plugin types.
-        /// </summary>
-        public enum PluginType
-        {
-            Parser,
-
-            Analyzer,
-
-            Visualizer,
-
-            Error
-        }
-
         public ParserController(
-            ILogger<PluginController> logger,
-            DbContextOptions<PluginContext> options,
+            ILogger<ParserController> logger,
             IHostingEnvironment hostingEnvironment)
         {
             this.logger = logger;
-            this.options = options;
             this.hostingEnvironment = hostingEnvironment;
         }
 
         // GET: Parser
         public ActionResult Index()
         {
-            using (var db = new PluginContext(this.options))
-            {
-                PluginList = db.PluginDescription.Where(i => i.Type == PluginController.PluginType.Parser)
-                    .ToList();
-                PluginList.Sort(delegate(PluginDescription a, PluginDescription b)
-                {
-                    var xdiff = a.Type.CompareTo(b.Type);
-                    return xdiff != 0 ? xdiff : string.Compare(a.Name, b.Name, StringComparison.Ordinal);
-                });
-            }
-
             this.logger.LogInformation($"Plugins loaded: {PluginList.Count}");
 
             return View("~/Views/Plugin/Parser/Index.cshtml", PluginList);
@@ -78,15 +62,9 @@ namespace Framework.Controllers.Plugin
         // GET: Parser/Run/5
         public ActionResult Run(int id)
         {
-            PluginDescription parser;
-            using (var db = new PluginContext(this.options))
-            {
-                parser = db.PluginDescription.FirstOrDefault(i => i.ID == id);
-            }
+            PluginDescription parser = this.PluginList.Find(p => p.ID == id);
 
-            var fileEntries = Directory.GetFiles("LogStorage").ToList();
-
-            ViewBag.files = fileEntries;
+            ViewBag.files = Directory.GetFiles("LogStorage").ToList(); ;
 
             ViewBag.Analyzers = new List<string> { "Clustering - package", "Clustering - fan", "Clustering - caller", "Petri net" };
 
