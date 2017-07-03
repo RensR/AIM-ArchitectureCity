@@ -1,4 +1,4 @@
-﻿namespace Framework.Plugins.Parsers.SpottaParse
+﻿namespace Framework.Plugins.Parsers.DLParse
 {
     using System;
     using System.Collections.Generic;
@@ -12,9 +12,9 @@
     using Microsoft.Extensions.Logging;
 
     /// <summary>
-    /// SpottaParse implements the Parser class with specific components to parse logs from the company Spotta
+    /// DLParse implements the Parser class with specific components to parse logs from the company DL
     /// </summary>
-    public class SpottaParse : Parser
+    public class DLParse : Parser
     {
         private readonly Dictionary<string, Event> events = new Dictionary<string, Event>();
 
@@ -23,16 +23,16 @@
         /// <summary>
         /// Returns the name of the parser for display purposes 
         /// </summary>
-        public override string Name => "SpottaParse";
+        public override string Name => "DLParse";
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SpottaParse"/> class with a logger.
+        /// Initializes a new instance of the <see cref="DLParse"/> class with a logger.
         /// </summary>
         /// <param name="logger">
         /// The logger that was injected in the controller is passed to the parser to be able
         /// to support logging.
         /// </param>
-        public SpottaParse(ILogger logger)
+        public DLParse(ILogger logger)
         {
             this.logger = logger;
         }
@@ -112,7 +112,7 @@
                 else if (name.StartsWith("Toegang verleend"))
                     name = "Toegang verleend";
 
-                // Next type of Spotta File
+                // Next type of DL File
                 else if (name.StartsWith("Toegang verleend op transport/inboeken_op_ssc"))
                     name = "Toegang verleend op transport/inboeken_op_ssc";
                 else if (name.StartsWith("Toegang verleend op transport/folders_en_voorraad_overzicht"))
@@ -189,7 +189,7 @@
         {
             var maxSpan = TimeSpan.FromMinutes(30);
 
-            // Spotta log has no case-id property so we use thread-id
+            // DL log has no case-id property so we use thread-id
             // This however does not identify all traces and clusters some together
             // We use the MAX_SPAN to set a max timespan interval between two events
             // If it exceeds it we handle it as a new trace

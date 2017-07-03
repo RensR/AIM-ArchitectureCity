@@ -9,8 +9,8 @@ namespace Framework.Controllers.Plugin
     using Framework.Models;
     using Framework.Plugins;
     using Framework.Plugins.Analyzers;
-    using Framework.Plugins.Parsers.PGGMParse;
-    using Framework.Plugins.Parsers.SpottaParse;
+    using Framework.Plugins.Parsers.FIParse;
+    using Framework.Plugins.Parsers.DLParse;
     using Framework.Plugins.Visualizers;
 
     using Microsoft.AspNetCore.Hosting;
@@ -25,16 +25,16 @@ namespace Framework.Controllers.Plugin
                              {
                                  new PluginDescription(
                                      0,
-                                     "SpottaParse",
+                                     "DLParse",
                                      PluginDescription.PluginType.Parser, 
-                                     "Parser for Spotta logs",
+                                     "Parser for DL logs",
                                      "v1.0.0",
                                      "R.M. Rooimans"),
                                  new PluginDescription(
                                      1,
-                                     "PGGMParse",
+                                     "FIParse",
                                      PluginDescription.PluginType.Parser,
-                                     "Parser for PGGM logs",
+                                     "Parser for FI logs",
                                      "v1.0.0",
                                      "R.M. Rooimans")
                              };
@@ -66,7 +66,7 @@ namespace Framework.Controllers.Plugin
 
             ViewBag.files = Directory.GetFiles("LogStorage").ToList(); ;
 
-            ViewBag.Analyzers = new List<string> { "Clustering - package", "Clustering - fan", "Clustering - caller", "Petri net" };
+            ViewBag.Analyzers = new List<string> { "Clustering - package", "Clustering - fan", "Petri net" };
 
             if (parser != null)
                 return View("~/Views/Plugin/Parser/Run.cshtml", parser);
@@ -82,7 +82,7 @@ namespace Framework.Controllers.Plugin
         public async Task<ActionResult> Run(int id, IFormCollection collection)
         {
             // Determine the parser (hard coded)
-            var parser = id == 1 ? (Parser)new PGGMParse(this.logger) : new SpottaParse(this.logger);
+            var parser = id == 1 ? (Parser)new FIParse(this.logger) : new DLParse(this.logger);
 
             collection.TryGetValue("input", out StringValues filePath);
             var watch = new Stopwatch();

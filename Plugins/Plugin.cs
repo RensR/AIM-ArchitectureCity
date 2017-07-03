@@ -17,11 +17,6 @@
         /// Gets the name of the plugin
         /// </summary>
         public abstract string Name { get; }
-
-        /// <summary>
-        /// Gets or sets the path of the plugin
-        /// </summary>
-        public string Path { get; set; }
     }
 
     /// <summary>

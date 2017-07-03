@@ -1,4 +1,4 @@
-﻿namespace Framework.Plugins.Parsers.PGGMParse
+﻿namespace Framework.Plugins.Parsers.FIParse
 {
     using System;
     using System.Collections.Generic;
@@ -13,9 +13,9 @@
 
 
     /// <summary>
-    /// PggmParse implements the Parser class with specific components to parse logs from the company PGGM
+    /// FIParse implements the Parser class with specific components to parse logs from the company FI
     /// </summary>
-    public class PGGMParse : Parser
+    public class FIParse : Parser
     {
         private readonly Dictionary<string, Event> events = new Dictionary<string, Event>();
 
@@ -24,16 +24,16 @@
         /// <summary>
         /// Returns the name of the parser for display purposes 
         /// </summary>
-        public override string Name => "PGGMParse";
+        public override string Name => "FIParse";
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PGGMParse"/> class with a logger.
+        /// Initializes a new instance of the <see cref="FIParse"/> class with a logger.
         /// </summary>
         /// <param name="logger">
         /// The logger that was injected in the controller is passed to the parser to be able
         /// to support logging.
         /// </param>
-        public PGGMParse(ILogger logger)
+        public FIParse(ILogger logger)
         {
             this.logger = logger;
         }
