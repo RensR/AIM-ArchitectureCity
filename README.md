@@ -12,11 +12,14 @@ OpenSCAD for visualizing .scad files (ArchitectureCity)
 
 
 #### Windows
-~~~~
+Install Dotnet Core 1.0
+
 Use Visual Studio 2017
- Dotnet Core 1.0
+
 Install the NuGet packages
-Install the bower dependencies
+
+~~~~
+bower install
 ~~~~
 
 

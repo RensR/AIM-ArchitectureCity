@@ -1,31 +1,45 @@
 ﻿namespace Framework.Models
 {
-    using System.ComponentModel.DataAnnotations;
-
-    using Framework.Controllers;
-
     public class PluginDescription
     {
-        [Key]
-        [Required]
+        public enum PluginType
+        {
+            Parser,
+
+            Analyzer,
+
+            Visualizer,
+
+            Error
+        }
+
         public int ID { get; set; }
 
-        [Required]
         public string Name { get; set; }
 
-        [Required]
-        public PluginController.PluginType Type { get; set; }
+        public PluginType Type { get; set; }
 
-        [Required]
         public string Description { get; set; }
 
-        [Required]
         public string Version { get; set; }
 
-        [Required]
         public string Author { get; set; }
 
-        [Required]
-        public string FilePath { get; set; }
+        public PluginDescription(
+            int id,
+            string name,
+            PluginType type,
+            string description,
+            string version,
+            string author)
+        {
+
+            ID = id;
+            Name = name;
+            Type = type;
+            Description = description;
+            Version = version;
+            Author = author;
+        }
     }
 }

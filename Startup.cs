@@ -1,11 +1,9 @@
 ﻿namespace Framework
 {
     using Framework.Data;
-    using Framework.Services;
 
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
-    using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
@@ -35,16 +33,8 @@
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
-            const string ConnectPostgres = "Host=localhost;Username=postgres;Password=root;Database=framework_plugin";
-
-            services.AddEntityFrameworkNpgsql()
-                .AddDbContext<PluginContext>(options => options.UseNpgsql(ConnectPostgres));
             services.AddDbContext<Neo4JContext>();
             services.AddMvc();
-
-            // Add application services.
-            services.AddTransient<IEmailSender, AuthMessageSender>();
-            services.AddTransient<ISmsSender, AuthMessageSender>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

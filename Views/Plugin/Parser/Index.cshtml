@@ -1,4 +1,7 @@
-@model IEnumerable<PluginDescription>
+
+@using Framework.Models
+
+@model System.Collections.Generic.IEnumerable<PluginDescription>
 @{
     ViewData["Title"] = "Parser Listing";
 }
@@ -18,9 +21,6 @@
         {
             <tr>
                 <td class="collapsing">
-                    <div class="ui fitted slider checkbox">
-                        <input type="checkbox"> <label></label>
-                    </div>
                 </td>
                 <td>
                     <a href="/Plugins/Parser/Run/@plugin.ID">@plugin.Name</a>
@@ -38,7 +38,3 @@
         }
     </tbody>
 </table>
-@using (Html.BeginForm("LookForPlugins", "Plugin"))
-{
-    <button class="btn btn-inverse" title="Refresh" type="submit">Refresh</button>
-}
