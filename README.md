@@ -2,8 +2,6 @@
 AIM can run on any operating system as the underlying Dotnet Core framework is platform independent. As of now you do require Visual Studio 2017 to run the source code. 
 
 ### General Dependencies
-PostgreSQL with .Net bindings
-
 Graphviz in path (callable from a CLI)
 
 For visualizations
