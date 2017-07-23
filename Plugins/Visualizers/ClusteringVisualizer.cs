@@ -1,4 +1,4 @@
-﻿using System.Globalization;
+﻿using System.Threading.Tasks;
 
 namespace Framework.Plugins.Visualizers
 {
@@ -7,10 +7,8 @@ namespace Framework.Plugins.Visualizers
     using System.IO;
     using System.Linq;
     using System.Text.RegularExpressions;
-    using System.Threading.Tasks;
-
-    using Framework.Plugins.Analyzers.Clustering.DataTypes;
-    using Framework.Plugins.Visualizers.DataTypes;
+    using Analyzers.Clustering.DataTypes;
+    using DataTypes;
 
     /// <summary>
     /// Parses a dot file to a more general building/road combination that is then passed to another
@@ -28,6 +26,11 @@ namespace Framework.Plugins.Visualizers
         /// Return the name of the visualizer
         /// </summary>
         public override string Name => "Clustering Visualizer";
+
+        public override async Task<string> RunAsync()
+        {
+            return "";
+        }
 
         /// <summary>
         /// Gets the list of buildings
@@ -180,16 +183,6 @@ namespace Framework.Plugins.Visualizers
             }
 
             return nodelist;
-        }
-
-        /// <summary>
-        /// A run method that return a task while all of the work is done on creation of this class.
-        /// </summary>
-        /// <returns> A status message that is displayed in the view
-        /// </returns>
-        public override async Task<string> RunAsync()
-        {
-            return "The image below is the 2D blueprint of the ArchitectureCity. To see the 3D image please load the proper file into OpenSCAD";
         }
 
         /// <summary>

@@ -22,12 +22,11 @@ namespace Framework.Plugins.Visualizers
         /// <param name="roads">
         /// The roads to be exported
         /// </param>
-        public static void Export(IEnumerable<Building> buildings, IEnumerable<Road> roads)
+        public static string Export(IEnumerable<Building> buildings, IEnumerable<Road> roads)
         {
             string output = "function main(){" +
                             "" +
                             "\n\n" +
-                            "// Insert Buildings\n" +
                             "return [";
 
             foreach (var building in buildings)
@@ -82,8 +81,6 @@ namespace Framework.Plugins.Visualizers
                           $",\n";
             }
 
-            output += "\n// Insert Roads\n";
-
             foreach (var road in roads)
             {
                 var roadColor = Math.Sqrt(road.Width);
@@ -93,7 +90,7 @@ namespace Framework.Plugins.Visualizers
 
                 // b and a are static as this creates a transition from green to red
                 var color = $"{r}, {g}, 0.22, 1";
-                var width = road.Width/10;
+                var width = road.Width/5;
 
                 output += "rectangular_extrude([ ";
                 output = road.Points.Aggregate(output, (current, roadPoint) => current +
@@ -101,7 +98,7 @@ namespace Framework.Plugins.Visualizers
                                                                                $"{roadPoint.Y / 10}" +
                                                                                "],").TrimEnd(',');
 
-                output += $" ], {{w: {width}, h: 1, closed: false}})" +
+                output += $"]\n, {{w: {width}, h: 0.5}})" +
                           $".setColor([{color}])" +
                           $",\n\n";
                 
@@ -116,6 +113,7 @@ namespace Framework.Plugins.Visualizers
             }
             output = output.TrimEnd(',') + "];\r\n}";
             File.WriteAllText("OpenSCAD\\JS.scad", output);
+            return output;
         }
     }
 }

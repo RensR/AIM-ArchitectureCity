@@ -125,13 +125,13 @@ namespace Framework.Controllers.Plugin
                         clusteringAnalyzer.NodeDict,
                         clusteringAnalyzer.OriginalFanInOut);
 
-                    OpenJSCADExport.Export(clusteringVisualizer.Buildings, clusteringVisualizer.Roads);
+                    var architectureCity = OpenJSCADExport.Export(clusteringVisualizer.Buildings, clusteringVisualizer.Roads);
                     OpenSCADExport.Export(clusteringVisualizer.Buildings, clusteringVisualizer.Roads);
 
                     ViewBag.htmlString = await clusteringVisualizer.RunAsync();
-                    ViewBag.ImagePath = "/images/" + pathAndData.Item1 + ".png";
+                    ViewBag.architectureCity = architectureCity;
 
-                    return View("~/Views/Plugin/Visualiser/Clustering.cshtml");
+                    return View("~/Views/Plugin/Visualiser/ArchitectureCity.cshtml");
 
                 default:
                     return View("~/Views/Shared/Error.cshtml");
