@@ -125,6 +125,7 @@ namespace Framework.Controllers.Plugin
                         clusteringAnalyzer.NodeDict,
                         clusteringAnalyzer.OriginalFanInOut);
 
+                    OpenJSCADExport.Export(clusteringVisualizer.Buildings, clusteringVisualizer.Roads);
                     OpenSCADExport.Export(clusteringVisualizer.Buildings, clusteringVisualizer.Roads);
 
                     ViewBag.htmlString = await clusteringVisualizer.RunAsync();

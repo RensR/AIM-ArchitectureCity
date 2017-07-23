@@ -1,4 +1,6 @@
-﻿namespace Framework.Plugins.Visualizers
+﻿using System.Globalization;
+
+namespace Framework.Plugins.Visualizers
 {
     using System;
     using System.Collections.Generic;
@@ -41,7 +43,7 @@
         /// Initializes a new instance of the <see cref="ClusteringVisualizer"/> class that parses the dot
         /// file into buildings and roads.
         /// </summary>
-        /// <param name="filePath"> The path for the dot file
+        /// <param name="dotInfo"> The path for the dot file
         /// </param>
         /// <param name="nodeDict"> is a dictionary of nodes to be able trace the node ids from the dot
         ///     file back to actual nodes
@@ -49,14 +51,13 @@
         /// <param name="originalFanInOut">The original fan in and out values of every node
         /// </param>
         public ClusteringVisualizer(
-            string filePath,
+            string dotInfo,
             Dictionary<int, Node> nodeDict,
             Dictionary<int, Tuple<int, int>> originalFanInOut)
         {
             var maxInOut = originalFanInOut.Max(x => x.Value.Item1 + x.Value.Item2);
 
-            filePath = $"DOTGraph\\{filePath}-Co.dot";
-            var reader = new StringReader(filePath);
+            var reader = new StringReader(dotInfo);
 
             // Parse the constants
             // Not used line e.g. digraph G {
