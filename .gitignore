@@ -64,3 +64,5 @@ OpenSCAD/Input.scad
 Framework.csproj.user
 *.DotSettings
 OpenSCAD/JS.scad
+
+.vs/*
