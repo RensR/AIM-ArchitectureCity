@@ -1,6 +1,6 @@
 ﻿namespace Framework.Data
 {
-    using Framework.Models;
+    using Models;
 
     using Microsoft.EntityFrameworkCore;
 

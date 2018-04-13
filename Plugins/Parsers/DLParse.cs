@@ -1,24 +1,22 @@
-﻿namespace Framework.Plugins.Parsers.DLParse
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using Framework.Models;
+using Microsoft.Extensions.Logging;
+
+namespace Framework.Plugins.Parsers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
-    using System.Text.RegularExpressions;
-    using System.Threading.Tasks;
-
-    using Framework.Models;
-
-    using Microsoft.Extensions.Logging;
-
     /// <summary>
     /// DLParse implements the Parser class with specific components to parse logs from the company DL
     /// </summary>
     public class DLParse : Parser
     {
-        private readonly Dictionary<string, Event> events = new Dictionary<string, Event>();
+        private readonly Dictionary<string, Event> _events = new Dictionary<string, Event>();
 
-        private readonly ILogger logger;
+        private readonly ILogger _logger;
 
         /// <summary>
         /// Returns the name of the parser for display purposes 
@@ -34,7 +32,7 @@
         /// </param>
         public DLParse(ILogger logger)
         {
-            this.logger = logger;
+            _logger = logger;
         }
 
         /// <summary>
@@ -56,10 +54,10 @@
             OutputModel = new RmrFileTypeModel
             {
                 TraceList = splitTraces,
-                EventList = this.events.Values.ToList()
+                EventList = this._events.Values.ToList()
             };
 
-            this.logger.LogDebug("Done parsing!");
+            _logger.LogDebug("Done parsing!");
 
             return Task.CompletedTask;
         }
@@ -154,8 +152,8 @@
                 // Parse the datetime that is always the first entry. Replace , with . for the datetime parse
                 var dateTime = DateTime.Parse(line.Substring(0, 23).Replace(',', '.'));
 
-                if (!this.events.ContainsKey($"{origin}\t{name}"))
-                    this.events.Add(
+                if (!_events.ContainsKey($"{origin}\t{name}"))
+                    this._events.Add(
                         $"{origin}\t{name}",
                         new Event
                         {
@@ -165,7 +163,7 @@
                             IsStart = true,
                             Thread = processID
                         });
-                eventInstances.Add(new EventInstance(this.events[$"{origin}\t{name}"], processID, dateTime));
+                eventInstances.Add(new EventInstance(this._events[$"{origin}\t{name}"], processID, dateTime));
                 count++;
             }
 

@@ -10,7 +10,7 @@
 
         public Trace(List<EventInstance> eventList)
         {
-            this.EventList = eventList;
+            EventList = eventList;
         }
     }
 }

@@ -6,7 +6,7 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    using Framework.Models.Nodes;
+    using Models.Nodes;
 
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Logging;
@@ -21,11 +21,11 @@
 
         public GraphClient Client { get; }
 
-        private readonly ILogger logger;
+        private readonly ILogger _logger;
 
         public Neo4JContext(ILogger logger)
         {
-            this.logger = logger;
+            _logger = logger;
             Client = new GraphClient(new Uri("http://localhost:7474/db/data"), "neo4j", "memphis")
             {
                 JsonContractResolver = new CamelCasePropertyNamesContractResolver()
@@ -36,7 +36,7 @@
             }
             catch (System.Net.Http.HttpRequestException e)
             {
-                this.logger.LogError($"Database Neo4j not found, please check if it is online. {e.InnerException}");
+                _logger.LogError($"Database Neo4j not found, please check if it is online. {e.InnerException}");
             }
         }
 
@@ -212,7 +212,7 @@
                     sw.Write($"{nodeListA[j]}," +
                              $"{nodeListB[j]}," +
                              $"{weightList[j]}" +
-                             $"\n");
+                             "\n");
                 }
             }
 
@@ -237,7 +237,7 @@
             }
             catch (InvalidOperationException ioe)
             {
-                this.logger.LogCritical($"Database server most likely not running. Please start the Neo4j Client. Error: {ioe.InnerException}");
+                _logger.LogCritical($"Database server most likely not running. Please start the Neo4j Client. Error: {ioe.InnerException}");
                 throw;
             }
         }

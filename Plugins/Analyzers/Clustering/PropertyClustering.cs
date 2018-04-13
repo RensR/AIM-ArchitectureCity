@@ -4,9 +4,9 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    using Framework.Models;
-    using Framework.Plugins.Analyzers.Clustering.DataTypes;
-    using Framework.Plugins.Core;
+    using Models;
+    using DataTypes;
+    using Core;
 
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.EntityFrameworkCore.Internal;

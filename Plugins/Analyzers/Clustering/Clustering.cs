@@ -6,9 +6,9 @@
     using System.IO;
     using System.Linq;
 
-    using Framework.Models;
-    using Framework.Plugins.Analyzers.Clustering.DataTypes;
-    using Framework.Plugins.Core;
+    using Models;
+    using DataTypes;
+    using Core;
 
     using Microsoft.AspNetCore.Hosting;
 
@@ -36,7 +36,7 @@
         /// <summary>
         /// The highest call count found in all actions
         /// </summary>
-        private int maxCallCount;
+        private int _maxCallCount;
 
         /// <summary>
         /// All nodes currently in the graph. This includes clusters and excludes merged nodes
@@ -52,7 +52,7 @@
         /// Ensures that DOT files are created in the proper location even when different HDDs 
         /// are used for the OS and this program
         /// </summary>
-        private readonly IHostingEnvironment hostingEnvironment;
+        private readonly IHostingEnvironment _hostingEnvironment;
 
         /// <summary>
         /// Ensures that DOT files are created in the proper location even when different HDDs 
@@ -64,8 +64,8 @@
         /// </param>
         public Clustering(IHostingEnvironment hostingEnvironment, IEnumerable<Event> eventList)
         {
-            this.hostingEnvironment = hostingEnvironment;
-            this.NodeCounter = eventList.Max(e => e.ID) + 1;
+            _hostingEnvironment = hostingEnvironment;
+            NodeCounter = eventList.Max(e => e.ID) + 1;
         }
 
         /// <summary>
@@ -106,7 +106,7 @@
             graph.AddVertexRange(this.Nodes.Values);
 
             // Set the highest found callCount (back) to zero
-            this.maxCallCount = 0;
+            this._maxCallCount = 0;
 
             // Add all the edges by adding all out-edges only. If we would add both in and out we would
             // have all duplicated edges
@@ -116,7 +116,7 @@
                     graphVertex.Out.Values.Select(x => new Edge(graphVertex, this.Nodes[x.First], x.Second)));
 
                 // If the highest callcount is smaller than the found, update it
-                if (graphVertex.CallCount > this.maxCallCount) this.maxCallCount = graphVertex.CallCount;
+                if (graphVertex.CallCount > this._maxCallCount) this._maxCallCount = graphVertex.CallCount;
             }
 
             return this.ProcessDot(graph.ToGraphviz(this.InitGraph));
@@ -136,7 +136,7 @@
                     int size = (int)Math.Ceiling(Math.Sqrt(args.Vertex.ParentCount()));
                     args.VertexFormatter.Label = $"{args.Vertex.ID}";
 
-                    int b = args.Vertex.CallCount * 255 / this.maxCallCount * 2;
+                    int b = args.Vertex.CallCount * 255 / this._maxCallCount * 2;
                     byte c = (byte)b;
 
                     args.VertexFormatter.Shape = GraphvizVertexShape.Box;
@@ -265,7 +265,7 @@
                                       new ProcessStartInfo
                                           {
                                               WorkingDirectory =
-                                                  this.hostingEnvironment.ContentRootPath,
+                                                  this._hostingEnvironment.ContentRootPath,
                                               FileName = "dot.exe",
                                               Arguments = args,
                                               UseShellExecute = false,

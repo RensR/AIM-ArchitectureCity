@@ -1,3 +1,5 @@
+using Framework.Plugins.Parsers;
+
 namespace Framework.Controllers.Plugin
 {
     using System;
@@ -9,8 +11,6 @@ namespace Framework.Controllers.Plugin
     using Models;
     using Plugins;
     using Plugins.Analyzers;
-    using Plugins.Parsers.FIParse;
-    using Plugins.Parsers.DLParse;
     using Plugins.Visualizers;
 
     using Microsoft.AspNetCore.Hosting;

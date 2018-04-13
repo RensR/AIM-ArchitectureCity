@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    using Framework.Plugins.Core;
+    using Core;
 
     /// <summary>
     /// Node class to represent a single element that can be clustered together.
@@ -36,7 +36,7 @@
         /// </returns>
         public string Identifier(int level = 0)
         {
-            return level < this.IdentifierSplit.Length ? this.IdentifierSplit[level] : string.Empty;
+            return level < IdentifierSplit.Length ? IdentifierSplit[level] : string.Empty;
         }
 
         /// <summary>

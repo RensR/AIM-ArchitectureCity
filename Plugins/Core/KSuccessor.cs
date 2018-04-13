@@ -5,7 +5,7 @@ namespace Framework.Plugins.Core
     using System.IO;
     using System.Linq;
 
-    using Framework.Models;
+    using Models;
 
     /// <summary>
     /// K-successor class implements 

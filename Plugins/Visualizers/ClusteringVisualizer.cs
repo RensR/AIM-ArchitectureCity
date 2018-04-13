@@ -7,8 +7,8 @@
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
 
-    using Framework.Plugins.Analyzers.Clustering.DataTypes;
-    using Framework.Plugins.Visualizers.DataTypes;
+    using Analyzers.Clustering.DataTypes;
+    using DataTypes;
 
     /// <summary>
     /// Parses a dot file to a more general building/road combination that is then passed to another
