@@ -1,4 +1,6 @@
-﻿namespace Framework.Plugins.Visualizers
+﻿using System.Globalization;
+
+namespace Framework.Plugins.Visualizers
 {
     using System;
     using System.Collections.Generic;
@@ -21,7 +23,7 @@
         /// </param>
         public static void Export(IEnumerable<Building> buildings, IEnumerable<Road> roads)
         {
-            string output = "include<Building.scad>\n  " + 
+            string output = "include<Building.scad>\n" + 
                 "$vpr = [47.3, 0, 32.7];\n" +
                 "$vpd = 8524.52;\n\n" +
                 "// Insert Buildings\n";
@@ -33,11 +35,11 @@
 
                 if (building.Color[0] == '#')
                 {
-                    r = byte.Parse(building.Color.Substring(1, 2), System.Globalization.NumberStyles.AllowHexSpecifier)
+                    r = byte.Parse(building.Color.Substring(1, 2), NumberStyles.AllowHexSpecifier)
                         / 255f;
-                    g = byte.Parse(building.Color.Substring(3, 2), System.Globalization.NumberStyles.AllowHexSpecifier)
+                    g = byte.Parse(building.Color.Substring(3, 2), NumberStyles.AllowHexSpecifier)
                         / 255f;
-                    b = byte.Parse(building.Color.Substring(5, 2), System.Globalization.NumberStyles.AllowHexSpecifier)
+                    b = byte.Parse(building.Color.Substring(5, 2), NumberStyles.AllowHexSpecifier)
                         / 255f;
                 }
                 else
@@ -62,12 +64,12 @@
 
                 if (building.Label.Length > 10) building.Label = building.Label.Substring(0, 10);
 
-                output += $"Building( {building.OutLine.X - width / 2}, " + $"{building.OutLine.Y - width / 2}, "
+                output += $"Building( {building.OutLine.X - width / 2}, {building.OutLine.Y - width / 2}, " 
                           + $"{height}, " + $"{width}, " + $"[{r},{g},{b},{a}]," + $"\"{building.CallCount}\","
                           + $"\"{lbl1}\"," + $"\"{lbl2}\");\n";
             }
 
-            output += $"\n// Insert Roads\n";
+            output += "\n// Insert Roads\n";
 
             foreach (var road in roads)
             {
@@ -97,7 +99,7 @@
                           + $"{3 * road.Width});\n";
             }
 
-            File.WriteAllText($"OpenSCAD\\Input.scad", output);
+            File.WriteAllText("OpenSCAD\\Input.scad", output);
         }
     }
 }
