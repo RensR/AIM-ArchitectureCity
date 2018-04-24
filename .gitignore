@@ -69,3 +69,4 @@ OpenSCAD/JS.scad
 node_modules/*
 wwwroot/js/lib/*
 wwwroot/css/lib/*
+wwwroot/**/bundle.min.*
