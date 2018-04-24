@@ -130,7 +130,7 @@ namespace AIM.Controllers.Plugin
                     {
                         pathAndData = clusteringAnalyzer.CalculateClusters(maxDepth, analyzerType.ToString());
                     }
-                    catch (EntryPointNotFoundException e)
+                    catch (EntryPointNotFoundException)
                     {
                         ViewBag.error =
                             "Please install Graphviz (https://www.graphviz.org/download/) and add it to your path in order to run the visualizations.";

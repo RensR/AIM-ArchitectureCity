@@ -1,19 +1,19 @@
 ﻿@{
     ViewData["Title"] = "ArchitectureCity - Results";
 }
-<h2>ArchitectureCity</h2>
+<div class="ui container">
+    <h2>ArchitectureCity</h2>
 
-@ViewBag.htmlString
-
-
-<p>
-    Here is the code to input in <a href="https://openjscad.org/">OpenJSCAD</a> to view the ArchitectureCity visualization.
-    Alternatively, you can retrieve the .scad file from the server and render it in OpenSCAD.
-</p>
+    @ViewBag.htmlString
 
 
-<code>
-    @Url.Content(ViewBag.architectureCity)
-</code>
+    <p>
+        Here is the code to input in <a href="https://openjscad.org/">OpenJSCAD</a> to view the ArchitectureCity visualization.
+        Alternatively, you can retrieve the .scad file from the server and render it in OpenSCAD.
+    </p>
 
 
+    <code>
+        @Url.Content(ViewBag.architectureCity)
+    </code>
+</div>
