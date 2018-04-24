@@ -3,47 +3,39 @@
     ViewData["Title"] = "Parser Listing";
 }
 
-<h2>@Model.Name</h2>
-<div class="ui one column stackable center aligned page grid">
-<div class="column twelve wide">
-    <div class="ui grid">
-        <form asp-controller="Parser" asp-action="Run" method="post">
-            <div class="ui form">
-                <div class="field">
-                    <label>File to parse:</label>
-                    <div class="menu">
-                        <select id="input" name="Input">
-                            @foreach (var path in (List<string>)ViewBag.files)
-                            {
-                                <option value=@path>
-                                    @path
-                                </option>
-                            }
-                        </select>
-                    </div>
+    <h2>@Model.Name</h2>
+ 
+    <form asp-controller="Parser" asp-action="Run" method="post" class="ui inverted form">
+        <div class="inline field">
+            <label>File to parse</label>
+                <select id="input" name="Input" class="ui fluid dropdown">>
+                    @foreach (var path in (List<string>) ViewBag.files)
+                    {
+                        <option value=@path>
+                            @path
+                        </option>
+                    }
+                </select>
+        </div>
+        <div class="inline field">
+            <label>Analyzer</label>
+            <select id="analyzer" name="Analyzer">
+                @foreach (var analyzer in (List<string>)ViewBag.Analyzers)
+                {
+                    <option value=@analyzer>
+                        @analyzer
+                    </option>
+                }
+            </select>
+        </div>
+        <div class="inline field">
+            <div class="ui right labeled input">
+                <input id="depth" name="Depth" type="number" Value="3" />
+                <div class="ui basic label">
+                    Levels
                 </div>
-                <div class="inline field">
-                    <label>Analyzer</label>
-                    <select id="analyzer" name="Analyzer">
-                        @foreach (var analyzer in (List<string>)ViewBag.Analyzers)
-                        {
-                            <option value=@analyzer>
-                                @analyzer
-                            </option>
-                        }
-                    </select>
-                </div>
-                <div class="field">
-                    <div class="ui right labeled input">
-                        <input id="depth" name="Depth" type="number" Value="3" />
-                        <div class="ui basic label">
-                            Levels
-                        </div>
-                    </div>
-                </div>
-                <button type="submit" class="ui primary button">Submit</button>
             </div>
-        </form>
-    </div>
-</div>
+        </div>
+        <button type="submit" class="ui secondary button">Submit</button>
+    </form>
 </div>

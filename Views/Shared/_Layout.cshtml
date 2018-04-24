@@ -17,61 +17,69 @@
 </head>
 <body>
 <!-- Following Menu -->
-
-        <div class="ui large top pointing fixed menu">
+<div class="ui large top fixed hidden menu">
+    <div class="ui container">
+        <div class="item"> @Html.ActionLink("Home", "Index", "Home")</div>
+        <div class="item">  @Html.ActionLink("Plugins", "Index", "Parser")</div>
+        <div class="item"> @Html.ActionLink("Contact", "Contact", "Home")</div>
+    </div>
+</div>
+<!--Sidebar Menu-->
+<div class="ui vertical inverted sidebar menu">
+    <div class="item"> @Html.ActionLink("Home", "Index", "Home")</div>
+    <div class="item">  @Html.ActionLink("Plugins", "Index", "Parser")</div>
+    <div class="item"> @Html.ActionLink("Contact", "Contact", "Home")</div>
+</div>
+    <!-- Page Contents -->
+    <div class="pusher">
+        <div class="ui inverted vertical masthead center aligned segment">
             <div class="ui container">
-                <div class="item"> @Html.ActionLink("Home", "Index", "Home", new { @class = "item" }, null)</div>
-                <div class="item">  @Html.ActionLink("Plugins", "Index", "Parser", new { @class = "item" }, null)</div>
-                <div class="item"> @Html.ActionLink("Contact", "Contact", "Home", new { @class = "item" }, null)</div>
+                <div class="ui large secondary inverted pointing menu">
+                    <a class="toc item"><i class="sidebar icon"></i></a>
+                    <a class="item" href="/Home">Home</a>
+                    <a class="item" href="/Parser">Plugins</a>
+                    <a class="item" href="/Home/Contact">Contact</a>
+                </div>
             </div>
-        </div>
-
-        <!-- Page Contents -->
-        <div class="pusher">
-            <div class="ui container content">
                 @RenderBody()
             </div>
-
-            <div class="ui vertical footer segment">
-                <div class="ui container">
-                    <div class="ui stackable  divided equal height stackable grid">
-                        <div class="three wide column">
-                            <h4 class="ui header">About</h4>
-                            <div class="ui  link list">
-                                <a href="#" class="item">Sitemap</a>
-                                <a href="#" class="item">Contact Us</a>
-                                <a href="#" class="item">Link</a>
-                                <a href="#" class="item">Link</a>
-                            </div>
+        </div>
+        <div class="ui vertical footer segment">
+            <div class="ui container">
+                <div class="ui stackable  divided equal height stackable grid">
+                    <div class="three wide column">
+                        <h4 class="ui header">About</h4>
+                        <div class="ui  link list">
+                            <a href="#" class="item">Sitemap</a>
+                            <a href="#" class="item">Contact Us</a>
                         </div>
-                        <div class="three wide column">
-                            <h4 class="ui header">Services</h4>
-                            <div class="ui  link list">
-                                <a href="#" class="item">Service One</a>
-                                <a href="#" class="item">Service Two</a>
-                                <a href="#" class="item">Service Three</a>
-                                <a href="#" class="item">Service Four</a>
-                            </div>
+                    </div>
+                    <div class="three wide column">
+                        <h4 class="ui header">Services</h4>
+                        <div class="ui  link list">
+                            <a href="#" class="item">Service One</a>
+                            <a href="#" class="item">Service Two</a>
                         </div>
-                        <div class="ten wide column">
-                            <h4 class="ui header">In short...</h4>
-                            <p>Framework is the first of its kind, a zero-confige Framework for process mining. We combine proven techniques with the state of the art to give a never before seen visualisation of your software.</p>
-                        </div>
+                    </div>
+                    <div class="ten wide column">
+                        <h4 class="ui header">In short...</h4>
+                        <p>Framework is the first of its kind, a zero-confige Framework for process mining. We combine proven techniques with the state of the art to give a never before seen visualisation of your software.</p>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <environment names="Development">
-            <script src="~/js/lib/jquery.js"></script>
-            <script src="~/js/lib/semantic.js"></script>
-            <script src="~/js/site.js"></script>
-        </environment>
-        <environment names="Staging,Production">
-            <script src="~/js/bundle.min.js" asp-append-version="true"></script>
-            <script src="~/js/site.min.js" asp-append-version="true"></script>
-        </environment>
+    <environment names="Development">
+        <script src="~/js/lib/jquery.js"></script>
+        <script src="~/js/lib/semantic.js"></script>
+        <script src="~/js/site.js"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="~/js/bundle.min.js" asp-append-version="true"></script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
 
-        @RenderSection("scripts", required: false)
+    @RenderSection("scripts", required: false)
 </body>
 </html>

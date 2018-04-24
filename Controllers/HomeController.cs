@@ -39,7 +39,7 @@ namespace AIM.Controllers
         /// </returns>
         public IActionResult Contact()
         {
-            ViewData["Message"] = "Your contact page.";
+            ViewData["Message"] = "Find us at";
 
             return View();
         }
