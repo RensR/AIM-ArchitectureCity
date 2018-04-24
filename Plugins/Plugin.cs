@@ -1,13 +1,11 @@
-﻿namespace Framework.Plugins
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using AIM.Models;
+using Newtonsoft.Json.Linq;
+
+namespace AIM.Plugins
 {
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
-
-    using Models;
-
-    using Newtonsoft.Json.Linq;
-
     /// <summary>
     /// Plugin abstract class to contain shared information
     /// </summary>

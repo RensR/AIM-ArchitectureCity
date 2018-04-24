@@ -66,3 +66,6 @@ Framework.csproj.user
 OpenSCAD/JS.scad
 
 .vs/*
+node_modules/*
+wwwroot/js/lib/*
+wwwroot/css/lib/*

@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Framework.Models.Nodes;
-using Framework.Plugins.Core;
+using AIM.Models.Nodes;
+using AIM.Plugins.Core;
 
-namespace Framework.Plugins.Analyzers
+namespace AIM.Plugins.Analyzers
 {
     public class PetriNet
     {

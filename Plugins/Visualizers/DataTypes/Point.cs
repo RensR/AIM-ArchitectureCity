@@ -1,4 +1,4 @@
-namespace Framework.Plugins.Visualizers.DataTypes
+namespace AIM.Plugins.Visualizers.DataTypes
 {
     /// <summary>
     /// Helper class for combining two floating point numbers, mostly used as

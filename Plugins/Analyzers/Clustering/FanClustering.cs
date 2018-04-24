@@ -1,21 +1,18 @@
-﻿namespace Framework.Plugins.Analyzers.Clustering
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using AIM.Models;
+using AIM.Plugins.Analyzers.Clustering.DataTypes;
+using AIM.Plugins.Core;
+using Microsoft.AspNetCore.Hosting;
+using MoreLinq;
+
+namespace AIM.Plugins.Analyzers.Clustering
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-
-    using Models;
-    using DataTypes;
-    using Core;
-
-    using Microsoft.AspNetCore.Hosting;
-
-    using MoreLinq;
-
     /// <summary>
     /// Implementation of <see cref="Clustering"/> as clustering based on fan in and out
     /// </summary>
-    public class FanClustering : Clustering
+    public class FanClustering : AIM.Plugins.Analyzers.Clustering.Clustering
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="FanClustering"/> class. 

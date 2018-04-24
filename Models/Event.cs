@@ -1,8 +1,8 @@
-﻿namespace Framework.Models
-{
-    using System;
-    using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
+namespace AIM.Models
+{
     /// <summary>
     /// The event class contains information about an event that can have multiple
     /// occurrences as <see cref="EventInstance"/>s. It contains all static information

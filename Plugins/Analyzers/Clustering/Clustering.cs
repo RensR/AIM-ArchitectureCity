@@ -1,21 +1,18 @@
-﻿namespace Framework.Plugins.Analyzers.Clustering
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using AIM.Models;
+using AIM.Plugins.Analyzers.Clustering.DataTypes;
+using AIM.Plugins.Core;
+using Microsoft.AspNetCore.Hosting;
+using QuickGraph;
+using QuickGraph.Graphviz;
+using QuickGraph.Graphviz.Dot;
+
+namespace AIM.Plugins.Analyzers.Clustering
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.IO;
-    using System.Linq;
-
-    using Models;
-    using DataTypes;
-    using Core;
-
-    using Microsoft.AspNetCore.Hosting;
-
-    using QuickGraph;
-    using QuickGraph.Graphviz;
-    using QuickGraph.Graphviz.Dot;
-
     /// <summary>
     /// Superclass that includes the shared logic for every clustering algorithm. 
     /// Implementations should derive this class and add to it to create a working

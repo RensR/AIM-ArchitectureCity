@@ -4,10 +4,10 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using Framework.Models;
+using AIM.Models;
 using Microsoft.Extensions.Logging;
 
-namespace Framework.Plugins.Parsers
+namespace AIM.Plugins.Parsers
 {
     /// <summary>
     /// DLParse implements the Parser class with specific components to parse logs from the company DL

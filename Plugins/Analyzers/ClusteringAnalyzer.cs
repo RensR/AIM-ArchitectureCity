@@ -1,18 +1,15 @@
-﻿namespace Framework.Plugins.Analyzers
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using AIM.Models;
+using AIM.Plugins.Analyzers.Clustering;
+using AIM.Plugins.Analyzers.Clustering.DataTypes;
+using AIM.Plugins.Core;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Logging;
+
+namespace AIM.Plugins.Analyzers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics;
-
-    using Core;
-
-    using Models;
-    using Clustering;
-    using Clustering.DataTypes;
-
-    using Microsoft.AspNetCore.Hosting;
-    using Microsoft.Extensions.Logging;
-
     public class ClusteringAnalyzer : Analyzer
     {
         public override string Name => "PetriAna";
@@ -55,7 +52,7 @@
             var watch = new Stopwatch();
             watch.Start();
 
-            Clustering.Clustering active;
+            AIM.Plugins.Analyzers.Clustering.Clustering active;
 
             switch (type)
             {

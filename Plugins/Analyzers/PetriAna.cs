@@ -1,13 +1,11 @@
-﻿namespace Framework.Plugins.Analyzers
+﻿using System.Diagnostics;
+using System.Linq;
+using AIM.Models;
+using AIM.Plugins.Core;
+using Microsoft.Extensions.Logging;
+
+namespace AIM.Plugins.Analyzers
 {
-    using System.Diagnostics;
-    using System.Linq;
-
-    using Core;
-
-    using Models;
-    using Microsoft.Extensions.Logging;
-
     public class PetriAna : Analyzer
     {
         public override string Name { get; } = "PetriAna";

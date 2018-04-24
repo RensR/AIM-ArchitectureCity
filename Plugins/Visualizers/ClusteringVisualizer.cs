@@ -1,17 +1,14 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using AIM.Plugins.Analyzers.Clustering.DataTypes;
+using AIM.Plugins.Visualizers.DataTypes;
 
-namespace Framework.Plugins.Visualizers
+namespace AIM.Plugins.Visualizers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
-    using System.Text.RegularExpressions;
-    using System.Threading.Tasks;
-
-    using Analyzers.Clustering.DataTypes;
-    using DataTypes;
-
     /// <summary>
     /// Parses a dot file to a more general building/road combination that is then passed to another
     /// specific visualizer that renders it to a 3D model.

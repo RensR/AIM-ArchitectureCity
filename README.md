@@ -32,7 +32,7 @@ Graphviz should be able to be called from CLI. Graphviz is only needed when usin
 
 
 #### System
-Install Dotnet Core 1.0
+Install Dotnet Core 2.0
 
 Use Visual Studio 2017
 

@@ -1,16 +1,14 @@
-﻿namespace Framework.Plugins.Analyzers.Clustering
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using AIM.Models;
+using AIM.Plugins.Analyzers.Clustering.DataTypes;
+using AIM.Plugins.Core;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore.Internal;
+
+namespace AIM.Plugins.Analyzers.Clustering
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-
-    using Models;
-    using DataTypes;
-    using Core;
-
-    using Microsoft.AspNetCore.Hosting;
-    using Microsoft.EntityFrameworkCore.Internal;
-
     /// <summary>
     /// Implementation of <see cref="Clustering"/> as clustering based on properties
     /// </summary>

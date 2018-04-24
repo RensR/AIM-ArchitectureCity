@@ -1,7 +1,7 @@
-namespace Framework.Controllers
-{
-    using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
+namespace AIM.Controllers
+{
     /// <summary>
     /// Home controller to handle root requests
     /// </summary>

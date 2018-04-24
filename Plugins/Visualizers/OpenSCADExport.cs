@@ -1,11 +1,10 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 
-namespace Framework.Plugins.Visualizers
+namespace AIM.Plugins.Visualizers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-
     /// <summary>
     /// Exports a list of <see cref="Building"/>s and <see cref="Road"/>s to the OpenSCAD format
     /// to be openen in the OpenSCAD viewer as a 3D representation of a city.

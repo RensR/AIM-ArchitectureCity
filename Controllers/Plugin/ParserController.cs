@@ -1,24 +1,22 @@
-using Framework.Plugins.Parsers;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using AIM.Models;
+using AIM.Plugins;
+using AIM.Plugins.Analyzers;
+using AIM.Plugins.Parsers;
+using AIM.Plugins.Visualizers;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Primitives;
 
-namespace Framework.Controllers.Plugin
+namespace AIM.Controllers.Plugin
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.IO;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using Models;
-    using Plugins;
-    using Plugins.Analyzers;
-    using Plugins.Visualizers;
-
-    using Microsoft.AspNetCore.Hosting;
-    using Microsoft.AspNetCore.Http;
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.Extensions.Logging;
-    using Microsoft.Extensions.Primitives;
-
     public class ParserController : Controller
     {
         public List<PluginDescription> PluginList = new List<PluginDescription>

@@ -1,10 +1,9 @@
-﻿namespace Framework.Plugins.Analyzers.Clustering.DataTypes
+﻿using System.Collections.Generic;
+using System.Linq;
+using AIM.Plugins.Core;
+
+namespace AIM.Plugins.Analyzers.Clustering.DataTypes
 {
-    using System.Collections.Generic;
-    using System.Linq;
-
-    using Core;
-
     /// <summary>
     /// Node class to represent a single element that can be clustered together.
     /// </summary>

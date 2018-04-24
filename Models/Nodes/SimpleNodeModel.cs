@@ -1,7 +1,7 @@
-﻿namespace Framework.Models.Nodes
-{
-    using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
+namespace AIM.Models.Nodes
+{
     public class SimpleNodeModel
     {
         public static string Header => "label,source,name";

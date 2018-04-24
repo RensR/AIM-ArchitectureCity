@@ -1,20 +1,16 @@
-﻿namespace Framework.Data
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using AIM.Models.Nodes;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using Neo4jClient;
+using Newtonsoft.Json.Serialization;
+
+namespace AIM.Data
 {
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
-    using System.Threading.Tasks;
-
-    using Models.Nodes;
-
-    using Microsoft.EntityFrameworkCore;
-    using Microsoft.Extensions.Logging;
-
-    using Neo4jClient;
-
-    using Newtonsoft.Json.Serialization;
-
     public class Neo4JContext : DbContext
     {
         private const int MaxWriteCount = 10_000;

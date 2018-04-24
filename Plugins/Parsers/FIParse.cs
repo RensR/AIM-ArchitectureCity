@@ -4,10 +4,10 @@ using System.Dynamic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Framework.Models;
+using AIM.Models;
 using Microsoft.Extensions.Logging;
 
-namespace Framework.Plugins.Parsers
+namespace AIM.Plugins.Parsers
 {
     /// <summary>
     /// FIParse implements the Parser class with specific components to parse logs from the company FI

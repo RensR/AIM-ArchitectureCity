@@ -1,18 +1,16 @@
-﻿namespace Framework.Plugins.Visualizers
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
+using AIM.Data;
+using AIM.Models.Nodes;
+using AIM.Plugins.Analyzers;
+using AIM.Plugins.Core;
+using Microsoft.Extensions.Logging;
+
+namespace AIM.Plugins.Visualizers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Linq;
-    using System.Threading.Tasks;
-
-    using Data;
-    using Models.Nodes;
-    using Analyzers;
-    using Core;
-
-    using Microsoft.Extensions.Logging;
-
     public class PetriNetVis : Visualizer
     {
         public override string Name => "PetriVis";
