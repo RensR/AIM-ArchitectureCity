@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -7,6 +8,7 @@ using AIM.Models;
 using AIM.Plugins.Analyzers.Clustering.DataTypes;
 using AIM.Plugins.Core;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using QuickGraph;
 using QuickGraph.Graphviz;
 using QuickGraph.Graphviz.Dot;
@@ -116,7 +118,7 @@ namespace AIM.Plugins.Analyzers.Clustering
                 if (graphVertex.CallCount > this._maxCallCount) this._maxCallCount = graphVertex.CallCount;
             }
 
-            return this.ProcessDot(graph.ToGraphviz(this.InitGraph));
+            return ProcessDot(graph.ToGraphviz(InitGraph));
         }
 
         /// <summary>
@@ -275,9 +277,11 @@ namespace AIM.Plugins.Analyzers.Clustering
                 process.Start();
                 return process.StandardOutput.ReadToEnd();
             }
-            catch
+            catch(Exception e)
             {
-                return string.Empty;
+                if(e.Message == "The system cannot find the file specified")
+                    throw new EntryPointNotFoundException();
+                throw;
             }
             finally
             {

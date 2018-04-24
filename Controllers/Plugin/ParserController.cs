@@ -125,7 +125,18 @@ namespace AIM.Controllers.Plugin
                 case "Clustering - fan":
                 case "Clustering - caller":
                     var clusteringAnalyzer = new ClusteringAnalyzer(_hostingEnvironment, parser.OutputModel, _logger);
-                    var pathAndData = clusteringAnalyzer.CalculateClusters(maxDepth, analyzerType.ToString());
+                    (string, string) pathAndData;
+                    try
+                    {
+                        pathAndData = clusteringAnalyzer.CalculateClusters(maxDepth, analyzerType.ToString());
+                    }
+                    catch (EntryPointNotFoundException e)
+                    {
+                        ViewBag.error =
+                            "Please install Graphviz (https://www.graphviz.org/download/) and add it to your path in order to run the visualizations.";
+                        return View("~/Views/Shared/Error.cshtml");
+                    }
+                    
                     var clusteringVisualizer = new ClusteringVisualizer(
                         pathAndData.Item2,
                         clusteringAnalyzer.NodeDict,

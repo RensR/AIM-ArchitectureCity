@@ -24,7 +24,7 @@ namespace AIM.Plugins.Analyzers.Clustering
         /// </summary>
         public List<IGrouping<string, KeyValuePair<int, Node>>>[] Levels { get; }
 
-        private readonly Func<Node, string, Node> setPropertyFunc;
+        private readonly Func<Node, string, Node> _setPropertyFunc;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PropertyClustering"/> class.  
@@ -54,7 +54,7 @@ namespace AIM.Plugins.Analyzers.Clustering
             Func<Node, string, Node> setProperty)
             : base(hostingEnvironment, eventList)
         {
-            this.setPropertyFunc = setProperty;
+            this._setPropertyFunc = setProperty;
             this.MaxDepth = eventList.Max(x => getProperty(x).Split('.').Length);
 
             // Initialize the allNodes graph with the nodes
@@ -100,7 +100,7 @@ namespace AIM.Plugins.Analyzers.Clustering
 
                 Cluster node = new Cluster(this.NodeCounter++, parentNodes, level, size, callCount);
 
-                this.setPropertyFunc(node, node.Parents[0].IdentifierSplit.Take(level).Join("."));
+                this._setPropertyFunc(node, node.Parents[0].IdentifierSplit.Take(level).Join("."));
                 this.MergeHistory.Add(node);
 
                 this.UpdateFanInOut(node);

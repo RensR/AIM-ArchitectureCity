@@ -52,7 +52,7 @@ namespace AIM.Plugins.Analyzers
             var watch = new Stopwatch();
             watch.Start();
 
-            AIM.Plugins.Analyzers.Clustering.Clustering active;
+            Clustering.Clustering active;
 
             switch (type)
             {
