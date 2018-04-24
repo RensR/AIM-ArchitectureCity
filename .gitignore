@@ -56,6 +56,7 @@ Framework/.ssh.config
 *.xproj
 *.sln
 *.suo
+*.user
 
 *.csv
 *.DEBUG_filtered
