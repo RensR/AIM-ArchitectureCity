@@ -23,9 +23,10 @@ namespace AIM.Plugins.Visualizers
         /// </param>
         public static string Export(IEnumerable<Building> buildings, IEnumerable<Road> roads)
         {
+            var nfi = new NumberFormatInfo { NumberDecimalSeparator = "." };
+
             string output = "function main(){" +
-                            "" +
-                            "\n\n" +
+                            "\n" +
                             "return [";
 
             foreach (var building in buildings)
@@ -70,14 +71,11 @@ namespace AIM.Plugins.Visualizers
                 //          + $"{height}, " + $"{width}, " + $"[{r},{g},{b},{a}]," + $"\"{building.CallCount}\","
                 //          + $"\"{lbl1}\"," + $"\"{lbl2}\");\n";
 
-                output += $"cube({{size: [{width},{width},{height}], center: true}})" +
-                          $".translate([{x},{y},{height/2}])" +
-                          $".setColor([" +
-                          $"{r}," +
-                          $"{g}," +
-                          $"{b}," +
-                          $"{a}])" +
-                          $",\n";
+                output += $"cube({{size: [{width.ToString(nfi)},{width.ToString(nfi)},{height.ToString(nfi)}], center: true}})"
+                          + $".translate([{x.ToString(nfi)},{y.ToString(nfi)},{(height/2).ToString(nfi)}])"
+                          + $".setColor(["
+                          + $"{r.ToString(nfi)}, {g.ToString(nfi)},"
+                          + $"{b.ToString(nfi)}, {a.ToString(nfi)}]),\n";
             }
 
             foreach (var road in roads)
@@ -88,18 +86,16 @@ namespace AIM.Plugins.Visualizers
                 var g = Math.Min(0.9, Math.Max(0.15, 1.4 - (roadColor * 0.5)));
 
                 // b and a are static as this creates a transition from green to red
-                var color = $"{r}, {g}, 0.22, 1";
+                var color = $"{r.ToString(nfi)}, {g.ToString(nfi)}, 0.22, 1";
                 var width = road.Width/5;
 
                 output += "rectangular_extrude([ ";
                 output = road.Points.Aggregate(output, (current, roadPoint) => current +
-                                                                               $"[{roadPoint.X / 10}," +
-                                                                               $"{roadPoint.Y / 10}" +
-                                                                               "],").TrimEnd(',');
+                                                                               $"[{(roadPoint.X / 10).ToString(nfi)}," +
+                                                                               $"{(roadPoint.Y / 10).ToString(nfi)}],").TrimEnd(',');
 
-                output += $"]\n, {{w: {width}, h: 0.5}})" +
-                          $".setColor([{color}])" +
-                          $",\n\n";
+                output += $"]\n, {{w: {width.ToString(nfi)}, h: 0.5}})" +
+                          $".setColor([{color}]),\n";
                 
                 //var lastPoint = road.Points[road.Points.Count - 1];
 
