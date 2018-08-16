@@ -96,13 +96,14 @@ namespace AIM.Plugins.Analyzers.Clustering
         private Tuple<Node, Node> GetMergeCandidate()
         {
             // gets the node with the highest fan in or out while ignoring self edges
-            var candidateOne = this.Nodes.Values.MaxBy(x => Math.Max(x.In.Count(inkey => inkey.Key != x.ID), x.Out.Count(outkey => outkey.Key != x.ID)));
+            var candidateOne = Nodes.Values.MaxBy(x => Math.Max(x.In.Count(inkey => inkey.Key != x.ID), x.Out.Count(outkey => outkey.Key != x.ID))).Max();
 
+         
             if (candidateOne.In.Count == 0 && candidateOne.Out.Count == 0) throw new SequenceException();
 
             var candidateTwo = candidateOne.In.Count > candidateOne.Out.Count
-                                   ? candidateOne.In.Where(node => node.Key != candidateOne.ID).MaxBy(x => x.Value.Second).Key
-                                   : candidateOne.Out.Where(node => node.Key != candidateOne.ID).MaxBy(x => x.Value.Second).Key;
+                                   ? candidateOne.In.Where(node => node.Key != candidateOne.ID).MaxBy(x => x.Value.Second).Max().Key
+                                   : candidateOne.Out.Where(node => node.Key != candidateOne.ID).MaxBy(x => x.Value.Second).Max().Key;
 
             return new Tuple<Node, Node>(candidateOne, this.Nodes[candidateTwo]);
         }

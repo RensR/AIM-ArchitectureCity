@@ -129,7 +129,7 @@ namespace AIM.Plugins.Visualizers
 
                                 if (@in == 0)
                                 {
-                                    b.Color = "0.9,0.9,0.9";
+                                    b.Color = "0.7,0.8,0.9";
                                 }
                                 else if (@out == 0)
                                 {
