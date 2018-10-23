@@ -108,13 +108,13 @@ namespace Framework.Plugins.Visualizers
                             Building b = new Building(current.ID)
                                              {
                                                  Height =
-                                                     ((float)Math.Log10(current.CallCount) * 60 + 3),
+                                                     (float)Math.Log10(current.CallCount) * 60 + 3,
                                                  OutLine =
                                                      new Rectangle(
                                                          newBuilding.OutLine.X + (i * 96)
-                                                         - (((newBuilding.OutLine.Height / 2) - 0.5f) * 96),
+                                                         - ((newBuilding.OutLine.Height / 2) - 0.5f) * 96,
                                                          newBuilding.OutLine.Y + (j * 96)
-                                                         - (((newBuilding.OutLine.Width / 2) - 0.5f) * 96),
+                                                         - ((newBuilding.OutLine.Width / 2) - 0.5f) * 96,
                                                          0.8f,
                                                          0.8f),
 
