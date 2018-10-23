@@ -5,6 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="DOTGraph\**" />
+    <Compile Remove="Tables\**" />
+    <Content Remove="DOTGraph\**" />
+    <Content Remove="Tables\**" />
+    <EmbeddedResource Remove="DOTGraph\**" />
+    <EmbeddedResource Remove="Tables\**" />
+    <None Remove="DOTGraph\**" />
+    <None Remove="Tables\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Controllers\PluginController.cs" />
   </ItemGroup>
 

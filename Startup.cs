@@ -10,6 +10,10 @@ namespace AIM
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            System.Globalization.CultureInfo customCulture = (System.Globalization.CultureInfo)System.Threading.Thread.CurrentThread.CurrentCulture.Clone();
+            customCulture.NumberFormat.NumberDecimalSeparator = ".";
+
+            System.Threading.Thread.CurrentThread.CurrentCulture = customCulture;
         }
 
         public IConfiguration Configuration { get; }

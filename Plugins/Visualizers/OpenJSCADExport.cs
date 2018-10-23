@@ -52,8 +52,8 @@ namespace AIM.Plugins.Visualizers
                     a = float.Parse(splits[3]);
                 }
 
-                int height = (int)Math.Ceiling(building.Height)/10;
-                int width = (int)(building.OutLine.Width * 96)/10;
+                double height = Math.Ceiling(building.Height + 1)/10;
+                double width = (int)(building.OutLine.Width * 96)/10;
                 var x = building.OutLine.X/10;
                 var y = building.OutLine.Y / 10;
 
@@ -71,7 +71,7 @@ namespace AIM.Plugins.Visualizers
                 //          + $"{height}, " + $"{width}, " + $"[{r},{g},{b},{a}]," + $"\"{building.CallCount}\","
                 //          + $"\"{lbl1}\"," + $"\"{lbl2}\");\n";
 
-                output += $"cube({{size: [{width.ToString(nfi)},{width.ToString(nfi)},{height.ToString(nfi)}], center: true}})"
+                output += $"cube({{size: [{width.ToString(nfi)},{width.ToString(nfi)},{string.Format("{0:N2}", height.ToString(nfi))}], center: true}})"
                           + $".translate([{x.ToString(nfi)},{y.ToString(nfi)},{(height/2).ToString(nfi)}])"
                           + $".setColor(["
                           + $"{r.ToString(nfi)}, {g.ToString(nfi)},"
