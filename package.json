@@ -19,9 +19,12 @@
   "homepage": "https://github.com/RensR/AIM-ArchitectureCity#readme",
   "dependencies": {
     "jquery": "^3.3.1",
-    "semantic-ui": "^2.3.1"
+    "semantic-ui": "^2.4.2"
   },
   "devDependencies": {
+    "vinyl-fs": "3.0.3",
+    "minimatch": "3.0.4",
+    "globule": "1.2.1",
     "gulp": "3.9.1",
     "rimraf": "2.6.2",
     "gulp-concat": "2.6.1",
