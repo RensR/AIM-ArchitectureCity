@@ -1,7 +1,7 @@
-﻿namespace Framework.Plugins.Analyzers.Clustering.DataTypes
-{
-    using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
+namespace AIM.Plugins.Analyzers.Clustering.DataTypes
+{
     /// <summary>
     /// Simple helper class to determine whether a node is a cluster or a single node
     /// </summary>

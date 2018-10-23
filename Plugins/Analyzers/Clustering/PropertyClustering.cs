@@ -1,16 +1,14 @@
-﻿namespace Framework.Plugins.Analyzers.Clustering
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using AIM.Models;
+using AIM.Plugins.Analyzers.Clustering.DataTypes;
+using AIM.Plugins.Core;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore.Internal;
+
+namespace AIM.Plugins.Analyzers.Clustering
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-
-    using Framework.Models;
-    using Framework.Plugins.Analyzers.Clustering.DataTypes;
-    using Framework.Plugins.Core;
-
-    using Microsoft.AspNetCore.Hosting;
-    using Microsoft.EntityFrameworkCore.Internal;
-
     /// <summary>
     /// Implementation of <see cref="Clustering"/> as clustering based on properties
     /// </summary>
@@ -26,7 +24,7 @@
         /// </summary>
         public List<IGrouping<string, KeyValuePair<int, Node>>>[] Levels { get; }
 
-        private readonly Func<Node, string, Node> setPropertyFunc;
+        private readonly Func<Node, string, Node> _setPropertyFunc;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PropertyClustering"/> class.  
@@ -56,7 +54,7 @@
             Func<Node, string, Node> setProperty)
             : base(hostingEnvironment, eventList)
         {
-            this.setPropertyFunc = setProperty;
+            this._setPropertyFunc = setProperty;
             this.MaxDepth = eventList.Max(x => getProperty(x).Split('.').Length);
 
             // Initialize the allNodes graph with the nodes
@@ -102,7 +100,7 @@
 
                 Cluster node = new Cluster(this.NodeCounter++, parentNodes, level, size, callCount);
 
-                this.setPropertyFunc(node, node.Parents[0].IdentifierSplit.Take(level).Join("."));
+                this._setPropertyFunc(node, node.Parents[0].IdentifierSplit.Take(level).Join("."));
                 this.MergeHistory.Add(node);
 
                 this.UpdateFanInOut(node);

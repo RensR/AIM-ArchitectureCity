@@ -1,7 +1,7 @@
-namespace Framework.Plugins.Visualizers
-{
-    using Framework.Plugins.Visualizers.DataTypes;
+using AIM.Plugins.Visualizers.DataTypes;
 
+namespace AIM.Plugins.Visualizers
+{
     /// <summary>
     /// Rectangle class that represents a equal sides rectangle with a variable height
     /// </summary>

@@ -1,12 +1,11 @@
-namespace Framework.Plugins.Core
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using AIM.Models;
+
+namespace AIM.Plugins.Core
 {
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
-
-    using Framework.Models;
-
     /// <summary>
     /// K-successor class implements 
     /// </summary>

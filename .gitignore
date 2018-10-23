@@ -57,6 +57,7 @@ Framework/.ssh.config
 *.sln
 *.suo
 .vs
+*.user
 
 *.csv
 *.DEBUG_filtered
@@ -65,3 +66,9 @@ OpenSCAD/Input.scad
 Framework.csproj.user
 *.DotSettings
 OpenSCAD/JS.scad
+
+.vs/*
+node_modules/*
+wwwroot/js/lib/*
+wwwroot/css/lib/*
+wwwroot/**/bundle.min.*

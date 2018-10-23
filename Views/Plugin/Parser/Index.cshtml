@@ -1,27 +1,24 @@
-
-@using Framework.Models
-
-@model System.Collections.Generic.IEnumerable<PluginDescription>
+@model IEnumerable<PluginDescription>
 @{
     ViewData["Title"] = "Parser Listing";
 }
-<h2>Plugin List</h2>
-<table class="ui compact celled definition table">
-    <thead>
+
+    <h2>Plugin List</h2>
+
+<div class="">
+    <table class="ui inverted table">
+        <thead>
         <tr>
             <th></th>
-            <th>Name</th>
             <th>Description</th>
             <th>Author</th>
             <th>Version</th>
         </tr>
-    </thead>
-    <tbody>
+        </thead>
+        <tbody>
         @foreach (var plugin in Model)
         {
             <tr>
-                <td class="collapsing">
-                </td>
                 <td>
                     <a href="/Plugins/Parser/Run/@plugin.ID">@plugin.Name</a>
                 </td>
@@ -36,5 +33,6 @@
                 </td>
             </tr>
         }
-    </tbody>
-</table>
+        </tbody>
+    </table>
+</div>

@@ -1,4 +1,4 @@
-﻿namespace Framework.Models
+﻿namespace AIM.Models
 {
     public class PluginDescription
     {

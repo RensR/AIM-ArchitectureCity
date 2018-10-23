@@ -1,7 +1,7 @@
-﻿namespace Framework.Plugins.Core
-{
-    using System;
+﻿using System;
 
+namespace AIM.Plugins.Core
+{
     /// <summary>
     /// Mutable version of the <see cref="Tuple{T1, T2}"/> class
     /// </summary>

@@ -1,11 +1,10 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 
-namespace Framework.Plugins.Visualizers
+namespace AIM.Plugins.Visualizers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-
     /// <summary>
     /// Exports a list of <see cref="Building"/>s and <see cref="Road"/>s to the OpenSCAD format
     /// to be openen in the OpenSCAD viewer as a 3D representation of a city.
@@ -23,6 +22,8 @@ namespace Framework.Plugins.Visualizers
         /// </param>
         public static void Export(IEnumerable<Building> buildings, IEnumerable<Road> roads)
         {
+            var nfi = new NumberFormatInfo {NumberDecimalSeparator = "."};
+
             string output = "include<Building.scad>\n" + 
                 "$vpr = [47.3, 0, 32.7];\n" +
                 "$vpd = 8524.52;\n\n" +
@@ -64,9 +65,15 @@ namespace Framework.Plugins.Visualizers
 
                 if (building.Label.Length > 10) building.Label = building.Label.Substring(0, 10);
 
-                output += $"Building( {building.OutLine.X - width / 2}, {building.OutLine.Y - width / 2}, " 
-                          + $"{height}, " + $"{width}, " + $"[{r},{g},{b},{a}]," + $"\"{building.CallCount}\","
-                          + $"\"{lbl1}\"," + $"\"{lbl2}\");\n";
+                output += "Building("
+                          + $"{(building.OutLine.X - width / 2).ToString(nfi)}, "
+                          + $"{(building.OutLine.Y - width / 2).ToString(nfi)}, "
+                          + $"{height.ToString(nfi)}, "
+                          + $"{width.ToString(nfi)}, "
+                          + $"[{r.ToString(nfi)},{g.ToString(nfi)},{b.ToString(nfi)},{a.ToString(nfi)}],"
+                          + $"\"{building.CallCount.ToString(nfi)}\","
+                          + $"\"{lbl1.ToString(nfi)}\"," 
+                          + $"\"{lbl2.ToString(nfi)}\");\n";
             }
 
             output += "\n// Insert Roads\n";
@@ -79,13 +86,14 @@ namespace Framework.Plugins.Visualizers
                 var g = Math.Min(0.9, Math.Max(0.15, 1.4 - (roadColor * 0.5)));
 
                 // b and a are static as this creates a transition from green to red
-                var color = $"{r}, {g}, 0.22, 1";
+                var color = $"{r.ToString(nfi)}, {g.ToString(nfi)}, 0.22, 1";
 
 
                 for (var index = 2; index < road.Points.Count; index++)
                 {
-                    output += $"Road([{road.Points[index].X},{road.Points[index].Y},0],"
-                              + $"[{road.Points[index - 1].X},{road.Points[index - 1].Y},0]," + $"{road.Width},"
+                    output += $"Road([{road.Points[index].X.ToString(nfi)},{road.Points[index].Y.ToString(nfi)},0],"
+                              + $"[{road.Points[index - 1].X.ToString(nfi)},{road.Points[index - 1].Y.ToString(nfi)},0]," 
+                              + $"{road.Width.ToString(nfi)},"
                               + $"[{color}]);\n";
                 }
 
@@ -95,8 +103,9 @@ namespace Framework.Plugins.Visualizers
                 float yDiff = lastPoint.Y - road.Points[road.Points.Count - 2].Y;
                 var angle = Math.Atan2(yDiff, xDiff) * 180.0 / Math.PI;
 
-                output += $"Arrow([{lastPoint.X}, {lastPoint.Y}, 0]," + $"{angle}," + $"[{color}],"
-                          + $"{3 * road.Width});\n";
+                output += $"Arrow([{lastPoint.X.ToString(nfi)}, {lastPoint.Y.ToString(nfi)}, 0]," 
+                          + $"{angle.ToString(nfi)}," + $"[{color}],"
+                          + $"{(3 * road.Width).ToString(nfi)});\n";
             }
 
             File.WriteAllText("OpenSCAD\\Input.scad", output);

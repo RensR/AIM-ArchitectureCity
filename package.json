@@ -1,0 +1,32 @@
+{
+  "name": "AIM-ArchitectureCity",
+  "version": "1.0.0",
+  "description": "We propose ArchitectureCity, a variation on CodeCity built on dynamic aspects of the software system. ArchitectureCity allows for a clear, high-level overview of a systems dynamic aspects e.g. call counts and application flow. It was constructed using existing software architecture reconstruction techniques as well as new clustering algorithms to aid in the visualization. ArchitectureCity does not require any source code to run, as it is supplied solely log data. This means all information is completely based on true system performance.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RensR/AIM-ArchitectureCity.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RensR/AIM-ArchitectureCity/issues"
+  },
+  "homepage": "https://github.com/RensR/AIM-ArchitectureCity#readme",
+  "dependencies": {
+    "jquery": "^3.3.1",
+    "semantic-ui": "^2.3.1"
+  },
+  "devDependencies": {
+    "gulp": "3.9.1",
+    "rimraf": "2.6.2",
+    "gulp-concat": "2.6.1",
+    "gulp-cssmin": "0.2.0",
+    "gulp-uglify": "3.0.0",
+    "pump": "1.0.3"
+  }
+}

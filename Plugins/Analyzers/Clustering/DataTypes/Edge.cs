@@ -1,19 +1,19 @@
-﻿namespace Framework.Plugins.Analyzers.Clustering.DataTypes
-{
-    using QuickGraph;
+﻿using QuickGraph;
 
+namespace AIM.Plugins.Analyzers.Clustering.DataTypes
+{
     /// <summary>
     /// Implementation of the IEdge interface of QuickGraph.
     /// </summary>
     public class Edge : IEdge<Node>
     {
-        private readonly Node source;
+        private readonly Node _source;
 
-        private readonly Node target;
+        private readonly Node _target;
 
-        Node IEdge<Node>.Source => this.source;
+        Node IEdge<Node>.Source => _source;
 
-        Node IEdge<Node>.Target => this.target;
+        Node IEdge<Node>.Target => _target;
 
         /// <summary>
         /// Gets or sets the weight of an edge
@@ -34,8 +34,8 @@
         /// </param>
         public Edge(Node source, Node target, int weight = 0)
         {
-            this.source = source;
-            this.target = target;
+            _source = source;
+            _target = target;
             this.Weight = weight;
         }
     }

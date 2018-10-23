@@ -1,25 +1,22 @@
-﻿namespace Framework.Plugins.Parsers.FIParse
+﻿using System;
+using System.Collections.Generic;
+using System.Dynamic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using AIM.Models;
+using Microsoft.Extensions.Logging;
+
+namespace AIM.Plugins.Parsers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Dynamic;
-    using System.IO;
-    using System.Linq;
-    using System.Threading.Tasks;
-
-    using Framework.Models;
-
-    using Microsoft.Extensions.Logging;
-
-
     /// <summary>
     /// FIParse implements the Parser class with specific components to parse logs from the company FI
     /// </summary>
     public class FIParse : Parser
     {
-        private readonly Dictionary<string, Event> events = new Dictionary<string, Event>();
+        private readonly Dictionary<string, Event> _events = new Dictionary<string, Event>();
 
-        private readonly ILogger logger;
+        private readonly ILogger _logger;
 
         /// <summary>
         /// Returns the name of the parser for display purposes 
@@ -35,7 +32,7 @@
         /// </param>
         public FIParse(ILogger logger)
         {
-            this.logger = logger;
+            this._logger = logger;
         }
 
         public override Task Run(string filepath)
@@ -43,7 +40,7 @@
             var eventList = RunPreParse(filepath);
             var traces = ParseTraces(eventList);
 
-            OutputModel = new RmrFileTypeModel { TraceList = traces, EventList = this.events.Values.ToList() };
+            OutputModel = new RmrFileTypeModel { TraceList = traces, EventList = _events.Values.ToList() };
             return Task.CompletedTask;
         }
 
@@ -70,7 +67,7 @@
                 }
                 catch (Exception)
                 {
-                    this.logger.LogError(
+                    this._logger.LogError(
                         $"Datetime could not be parsed. Value '{values[4]}' or '{values[5]}' is not a datetime");
                 }
 
@@ -104,8 +101,8 @@
                 var origin = values[1].Replace('\\', '.');
                 if (origin[0] == '.') origin = origin.Substring(1, origin.Length - 1);
 
-                if (!this.events.ContainsKey(name))
-                    this.events.Add(
+                if (!this._events.ContainsKey(name))
+                    this._events.Add(
                         name,
                         new Event
                             {
@@ -115,7 +112,7 @@
                                 IsStart = true,
                                 Attributes = new ExpandoObject()
                             });
-                var startEvent = new EventInstance(this.events[name], processID, startTime);
+                var startEvent = new EventInstance(this._events[name], processID, startTime);
                 startEvent.Event.Attributes.ThirteenKCount = int.Parse(values[9]);
                 startEvent.Event.Attributes.SLValue = values[7];
 

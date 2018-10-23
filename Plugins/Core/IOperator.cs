@@ -1,7 +1,7 @@
-﻿namespace Framework.Plugins.Core
-{
-    using System;
+﻿using System;
 
+namespace AIM.Plugins.Core
+{
     /// <summary>
     /// Different types of connections between nodes 
     /// </summary>

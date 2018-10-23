@@ -1,7 +1,7 @@
-namespace Framework.Controllers
-{
-    using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
+namespace AIM.Controllers
+{
     /// <summary>
     /// Home controller to handle root requests
     /// </summary>
@@ -39,7 +39,7 @@ namespace Framework.Controllers
         /// </returns>
         public IActionResult Contact()
         {
-            ViewData["Message"] = "Your contact page.";
+            ViewData["Message"] = "Find us at";
 
             return View();
         }

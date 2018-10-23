@@ -1,18 +1,15 @@
-﻿namespace Framework.Plugins.Analyzers
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using AIM.Models;
+using AIM.Plugins.Analyzers.Clustering;
+using AIM.Plugins.Analyzers.Clustering.DataTypes;
+using AIM.Plugins.Core;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Logging;
+
+namespace AIM.Plugins.Analyzers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Diagnostics;
-
-    using Core;
-
-    using Framework.Models;
-    using Framework.Plugins.Analyzers.Clustering;
-    using Framework.Plugins.Analyzers.Clustering.DataTypes;
-
-    using Microsoft.AspNetCore.Hosting;
-    using Microsoft.Extensions.Logging;
-
     public class ClusteringAnalyzer : Analyzer
     {
         public override string Name => "PetriAna";
@@ -30,15 +27,15 @@
         /// </summary>
         public Dictionary<int, Tuple<int, int>> OriginalFanInOut = new Dictionary<int, Tuple<int, int>>();
 
-        private readonly ILogger logger;
+        private readonly ILogger _logger;
 
-        private readonly IHostingEnvironment hostingEnvironment;
+        private readonly IHostingEnvironment _hostingEnvironment;
 
         public ClusteringAnalyzer(IHostingEnvironment hostingEnvironment, RmrFileTypeModel input, ILogger logger)
             : base(input)
         {
-            this.logger = logger;
-            this.hostingEnvironment = hostingEnvironment;
+            _logger = logger;
+            _hostingEnvironment = hostingEnvironment;
             this.EventList = input.EventList;
 
             var watch = new Stopwatch();
@@ -55,13 +52,13 @@
             var watch = new Stopwatch();
             watch.Start();
 
-            Clustering.Clustering active = new Clustering.Clustering(this.hostingEnvironment, EventList);
+            Clustering.Clustering active;
 
             switch (type)
             {
                 case "Clustering - package":
                     active = new PropertyClustering(
-                        hostingEnvironment,
+                        _hostingEnvironment,
                         K1,
                         EventList,
                         x => x.Origin,
@@ -77,7 +74,7 @@
 
                 case "Clustering - caller":
                     active = new PropertyClustering(
-                        hostingEnvironment,
+                        _hostingEnvironment,
                         K1,
                         EventList,
                         x => x.Thread,
@@ -92,7 +89,7 @@
                     break;
 
                 case "Clustering - fan":
-                    active = new FanClustering(hostingEnvironment, K1, EventList, depth);
+                    active = new FanClustering(_hostingEnvironment, K1, EventList, depth);
                     break;
 
                 default:
@@ -102,7 +99,7 @@
 
             this.OriginalFanInOut = active.OriginalFanInOut;
             this.NodeDict = active.Nodes;
-            logger.LogDebug($"Clustering computed in\t{watch.ElapsedMilliseconds / 1000f:N}seconds");
+            _logger.LogDebug($"Clustering computed in\t{watch.ElapsedMilliseconds / 1000f:N}seconds");
 
             return active.Draw();
         }
