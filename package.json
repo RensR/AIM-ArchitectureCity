@@ -19,7 +19,7 @@
   "homepage": "https://github.com/RensR/AIM-ArchitectureCity#readme",
   "dependencies": {
     "jquery": "^3.4.0",
-    "semantic-ui": "^2.4.2"
+    "semantic-ui": "^2.5.0"
   },
   "devDependencies": {
     "vinyl-fs": "3.0.3",
