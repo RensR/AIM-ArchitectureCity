@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "vinyl-fs": "3.0.3",
-    "minimatch": "3.0.4",
+    "minimatch": "3.0.5",
     "globule": "1.2.1",
     "gulp": "3.9.1",
     "rimraf": "2.6.2",
